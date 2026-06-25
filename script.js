@@ -1,11 +1,6 @@
-const startBtn = document.getElementById("startBtn");
-const intro = document.getElementById("intro");
-
-startBtn.addEventListener("click", () => {
-  intro.style.display = "none";
-  startGame();
+document.getElementById('startButton').addEventListener('click', () => {
+  alert("Game started! 🚀\n(Je kan hier later de echte game starten)");
+  
+  // Hier komt later de overgang naar je echte game
+  // Voor nu alleen een melding
 });
-
-function startGame() {
-  document.body.innerHTML = "<h1 style='text-align:center;margin-top:50vh;'>GAME START!</h1>";
-}
