@@ -42,11 +42,14 @@ window.addEventListener('load', () => {
 startButton.addEventListener('click', () => {
 
     bgMusic.volume = musicVolume;
-    bgMusic.play().catch(err => console.log(err));
+
+    bgMusic.play().catch(err => {
+        console.error(err);
+    });
 
     playStartSound();
     titleScreen.classList.add('fade-out');
-    
+
     setTimeout(() => {
         titleScreen.classList.remove('active');
         menuScreen.classList.add('active');
