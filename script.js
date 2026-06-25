@@ -31,11 +31,7 @@ function playButtonSound() {
 
 // ==================== NETFLIX INTRO ====================
 window.addEventListener('load', () => {
-    // Start muziek zodra pagina laadt
-    bgMusic.volume = musicVolume;
-    bgMusic.play().catch(() => {});
-
-    setTimeout(() => {
+      setTimeout(() => {
         if (mainLogo) {
             mainLogo.style.animation = 'logoIntro 2.5s ease-out forwards';
         }
@@ -44,6 +40,10 @@ window.addEventListener('load', () => {
 
 // ==================== TITLE SCREEN ====================
 startButton.addEventListener('click', () => {
+
+    bgMusic.volume = musicVolume;
+    bgMusic.play().catch(err => console.log(err));
+
     playStartSound();
     titleScreen.classList.add('fade-out');
     
