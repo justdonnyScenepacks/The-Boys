@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
+ 
 <!-- TITLE SCREEN -->
 <div id="titleScreen" class="screen active">
   <div class="background"></div>
@@ -16,22 +16,94 @@
     <button class="start-btn" id="startButton">START GAME</button>
   </div>
 </div>
-  <!-- MAIN MENU -->
-  <div id="menuScreen" class="screen">
-    <div class="background"></div>
+
+<!-- MAIN MENU -->
+<div id="menuScreen" class="screen">
+  <div class="background"></div>
+  
+  <div class="menu-container">
+    <img src="the-boys-logo-small.png" alt="The Boys" class="menu-logo">
     
-    <div class="menu-container">
-      <img src="the-boys-logo-small.png" alt="The Boys" class="menu-logo">
-      
-      <div class="menu">
-        <button class="menu-btn" id="newGameBtn">NEW GAME</button>
-        <button class="menu-btn" id="loadGameBtn">LOAD GAME</button>
-        <button class="menu-btn" id="settingsBtn">SETTINGS</button>
-        <button class="menu-btn" id="quitBtn">QUIT GAME</button>
-      </div>
+    <div class="menu">
+      <button class="menu-btn" id="newGameBtn">NEW GAME</button>
+      <button class="menu-btn" id="loadGameBtn">LOAD GAME</button>
+      <button class="menu-btn" id="settingsBtn">SETTINGS</button>
+      <button class="menu-btn" id="quitBtn">QUIT GAME</button>
     </div>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- ==================== SETTINGS SCREEN ==================== -->
+<div id="settingsScreen" class="screen">
+  <div class="background"></div>
+  
+  <div class="settings-container">
+    <h1 class="settings-title">SETTINGS</h1>
+    
+    <div class="settings-content">
+
+      <!-- Audio -->
+      <div class="settings-section">
+        <h2>🎵 Audio</h2>
+        <div class="setting-item">
+          <label>Music Volume</label>
+          <input type="range" id="musicVolume" min="0" max="100" value="70">
+          <span id="musicValue">70%</span>
+        </div>
+        <div class="setting-item">
+          <label>Sound Effects</label>
+          <input type="range" id="sfxVolume" min="0" max="100" value="80">
+          <span id="sfxValue">80%</span>
+        </div>
+      </div>
+
+      <!-- Graphics -->
+      <div class="settings-section">
+        <h2>🖼️ Graphics</h2>
+        <div class="setting-item">
+          <label>Brightness</label>
+          <input type="range" id="brightness" min="60" max="140" value="100">
+          <span id="brightnessValue">100%</span>
+        </div>
+        <div class="setting-item">
+          <label>Fullscreen</label>
+          <button id="fullscreenBtn">Toggle Fullscreen</button>
+        </div>
+      </div>
+
+      <!-- Gameplay -->
+      <div class="settings-section">
+        <h2>🎮 Gameplay</h2>
+        <div class="setting-item">
+          <label>Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="normal" selected>Normal</option>
+            <option value="hard">Hard</option>
+            <option value="supe">The Boys Mode</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label>Auto Save</label>
+          <input type="checkbox" id="autoSave" checked>
+        </div>
+      </div>
+
+      <!-- Overig -->
+      <div class="settings-section">
+        <h2>⚙️ Overig</h2>
+        <button class="menu-btn" id="resetProgressBtn">Reset All Progress</button>
+        <button class="menu-btn" id="creditsBtn">Credits</button>
+      </div>
+
+    </div>
+
+    <div class="settings-footer">
+      <button class="menu-btn" id="backToMenuBtn">BACK TO MENU</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
