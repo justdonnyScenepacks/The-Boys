@@ -1,10 +1,13 @@
-// === THE BOYS GAME - Volledige Script (met Intro) ===
+// === THE BOYS GAME - Met Achtergrond Muziek ===
 
 const titleScreen = document.getElementById('titleScreen');
 const menuScreen = document.getElementById('menuScreen');
 const settingsScreen = document.getElementById('settingsScreen');
 const startButton = document.getElementById('startButton');
 const mainLogo = document.getElementById('mainLogo');
+
+// Background Music
+const bgMusic = document.getElementById('bgMusic');
 
 // Volume instellingen
 let musicVolume = 0.7;
@@ -28,6 +31,10 @@ function playButtonSound() {
 
 // ==================== NETFLIX INTRO ====================
 window.addEventListener('load', () => {
+    // Start muziek zodra pagina laadt
+    bgMusic.volume = musicVolume;
+    bgMusic.play().catch(() => {});
+
     setTimeout(() => {
         if (mainLogo) {
             mainLogo.style.animation = 'logoIntro 2.5s ease-out forwards';
@@ -38,7 +45,6 @@ window.addEventListener('load', () => {
 // ==================== TITLE SCREEN ====================
 startButton.addEventListener('click', () => {
     playStartSound();
-    
     titleScreen.classList.add('fade-out');
     
     setTimeout(() => {
@@ -81,35 +87,16 @@ backToMenuBtn.addEventListener('click', () => {
     menuScreen.classList.add('active');
 });
 
-// Volume sliders
+// ==================== VOLUME CONTROLS ====================
+// Muziek volume
 document.getElementById('musicVolume').addEventListener('input', (e) => {
     musicVolume = e.target.value / 100;
     document.getElementById('musicValue').textContent = e.target.value + '%';
+    bgMusic.volume = musicVolume;
 });
 
+// Sound Effects volume
 document.getElementById('sfxVolume').addEventListener('input', (e) => {
     sfxVolume = e.target.value / 100;
     document.getElementById('sfxValue').textContent = e.target.value + '%';
-});
-
-// Fullscreen + Reset + Credits
-document.getElementById('fullscreenBtn').addEventListener('click', () => {
-    playButtonSound();
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-        document.exitFullscreen();
-    }
-});
-
-document.getElementById('resetProgressBtn').addEventListener('click', () => {
-    playButtonSound();
-    if (confirm("⚠️ ALLE progress wissen?")) {
-        alert("Progress is gereset.");
-    }
-});
-
-document.getElementById('creditsBtn').addEventListener('click', () => {
-    playButtonSound();
-    alert("The Boys Game\n\nGemaakt met ❤️ door jou + Grok");
 });
