@@ -1,3 +1,12 @@
+// Netflix-style intro delay
+window.addEventListener('load', () => {
+    // Eventueel extra vertraging als je wilt
+    setTimeout(() => {
+        const logo = document.getElementById('mainLogo');
+        if (logo) logo.style.animationPlayState = 'running';
+    }, 300);
+});
+
 const titleScreen = document.getElementById('titleScreen');
 const menuScreen = document.getElementById('menuScreen');
 const startButton = document.getElementById('startButton');
@@ -14,15 +23,18 @@ function playButtonSound() {
     audio.play().catch(() => {});
 }
 
-// Klik op START GAME → opent het menu
+// Klik op START GAME → mooie overgang naar menu
 startButton.addEventListener('click', () => {
     playStartSound();
     
-    titleScreen.classList.remove('active');
+    // Animatie starten
+    titleScreen.classList.add('fade-out');
     
+    // Wacht tot de fade-out klaar is
     setTimeout(() => {
+        titleScreen.classList.remove('active');
         menuScreen.classList.add('active');
-    }, 400);
+    }, 700);
 });
 
 // Menu knoppen
