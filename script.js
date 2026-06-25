@@ -27,10 +27,8 @@ function playButtonSound() {
 startButton.addEventListener('click', () => {
     playStartSound();
     
-    // Animatie starten
     titleScreen.classList.add('fade-out');
     
-    // Wacht tot de fade-out klaar is
     setTimeout(() => {
         titleScreen.classList.remove('active');
         menuScreen.classList.add('active');
