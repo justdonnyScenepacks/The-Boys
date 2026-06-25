@@ -24,86 +24,83 @@ body {
   display: flex;
 }
 
-/* Concrete Wall Background */
+/* Concrete Wall Background - Wit/Grijs beton look */
 .background {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
-    url('https://images.unsplash.com/photo-1581091226825-a6a5a4d2c3e4') center/cover; /* Concrete texture */
+    linear-gradient(rgba(40,40,40,0.75), rgba(20,20,20,0.9)),
+    url('https://images.unsplash.com/photo-1581091226825-a6a5a4d2c3e4') center/cover;
   z-index: -1;
-  filter: contrast(1.1) brightness(0.85);
+  filter: contrast(1.15) brightness(0.75) grayscale(0.3);
 }
 
-/* TITLE SCREEN */
-.logo {
-  max-width: 55%; /* kleiner gemaakt */
-  filter: drop-shadow(0 0 50px rgba(255, 50, 50, 0.9));
-  animation: logoSpawn 2.2s ease-out forwards;
-}
-
-@keyframes logoSpawn {
-  0% { opacity: 0; transform: scale(0.5) translateY(-80px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.start-btn {
-  padding: 22px 80px;
-  font-size: 2.8rem;
-  letter-spacing: 6px;
-  color: #fff;
-  background: rgba(180, 0, 0, 0.9);
-  border: 4px solid #ff2222;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-transform: uppercase;
-  box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
-  margin-top: 30px;
-}
-
-.start-btn:hover {
-  background: #ff0000;
-  transform: scale(1.08);
-  box-shadow: 0 0 60px rgba(255, 0, 0, 1);
-}
-
-/* MENU SCREEN */
-.menu-container {
+/* TITLE SCREEN - Logo is nu de start knop */
+.container {
   text-align: center;
   z-index: 2;
 }
 
-.menu-logo {
-  max-width: 35%; /* kleiner in menu */
-  margin-bottom: 60px;
-  filter: drop-shadow(0 0 30px rgba(255, 80, 0, 0.7));
+.logo {
+  max-width: 58%;
+  cursor: pointer;
+  filter: drop-shadow(0 0 60px rgba(255, 60, 60, 0.85));
+  animation: logoSpawn 2.5s ease-out forwards;
+  transition: transform 0.4s, filter 0.4s;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 80px rgba(255, 80, 80, 1));
+}
+
+@keyframes logoSpawn {
+  0% { opacity: 0; transform: scale(0.4) translateY(-100px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* MENU SCREEN */
+.menu-container {
   position: relative;
-  left: -30px; /* iets naar links, niet helemaal gecentreerd */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-logo {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+  max-width: 26%;
+  filter: drop-shadow(0 0 25px rgba(255, 80, 0, 0.7));
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  max-width: 420px;
+  gap: 22px;
+  max-width: 460px;
 }
 
 .menu-btn {
-  padding: 18px 40px;
-  font-size: 1.8rem;
-  letter-spacing: 3px;
-  background: rgba(20, 20, 20, 0.85);
-  border: 3px solid #ff4444;
+  padding: 20px 50px;
+  font-size: 1.85rem;
+  letter-spacing: 4px;
+  background: rgba(30, 30, 30, 0.9);
+  border: 3px solid #ff3333;
   color: white;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.4s;
   text-transform: uppercase;
 }
 
 .menu-btn:hover {
-  background: #ff2222;
-  transform: translateX(20px);
-  box-shadow: 0 0 30px rgba(255, 60, 60, 0.8);
+  background: #c00;
+  transform: translateX(25px) scale(1.05);
+  box-shadow: 0 0 40px rgba(255, 50, 50, 0.9);
 }
