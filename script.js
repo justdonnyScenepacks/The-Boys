@@ -1,29 +1,41 @@
-// Netflix-style intro delay
-window.addEventListener('load', () => {
-    // Eventueel extra vertraging als je wilt
-    setTimeout(() => {
-        const logo = document.getElementById('mainLogo');
-        if (logo) logo.style.animationPlayState = 'running';
-    }, 300);
-});
+// === THE BOYS GAME - Volledige Script (met Intro) ===
 
 const titleScreen = document.getElementById('titleScreen');
 const menuScreen = document.getElementById('menuScreen');
+const settingsScreen = document.getElementById('settingsScreen');
 const startButton = document.getElementById('startButton');
+const mainLogo = document.getElementById('mainLogo');
+
+// Volume instellingen
+let musicVolume = 0.7;
+let sfxVolume = 0.8;
+
+// Geluiden
+const buttonSound = new Audio('https://freesound.org/data/previews/387/387186_7258994-lq.mp3');
+const startSound = new Audio('https://freesound.org/data/previews/276/276951_5123853-lq.mp3');
 
 function playStartSound() {
-    const audio = new Audio('https://freesound.org/data/previews/276/276951_5123853-lq.mp3');
-    audio.volume = 0.7;
-    audio.play().catch(() => {});
+    startSound.volume = sfxVolume;
+    startSound.currentTime = 0;
+    startSound.play().catch(() => {});
 }
 
 function playButtonSound() {
-    const audio = new Audio('https://freesound.org/data/previews/387/387186_7258994-lq.mp3');
-    audio.volume = 0.6;
-    audio.play().catch(() => {});
+    buttonSound.volume = sfxVolume;
+    buttonSound.currentTime = 0;
+    buttonSound.play().catch(() => {});
 }
 
-// Klik op START GAME → mooie overgang naar menu
+// ==================== NETFLIX INTRO ====================
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        if (mainLogo) {
+            mainLogo.style.animation = 'logoIntro 2.5s ease-out forwards';
+        }
+    }, 300);
+});
+
+// ==================== TITLE SCREEN ====================
 startButton.addEventListener('click', () => {
     playStartSound();
     
@@ -35,7 +47,7 @@ startButton.addEventListener('click', () => {
     }, 700);
 });
 
-// Menu knoppen
+// ==================== MENU BUTTONS ====================
 document.getElementById('newGameBtn').addEventListener('click', () => {
     playButtonSound();
     alert("🚀 Nieuwe game starten...");
@@ -46,11 +58,6 @@ document.getElementById('loadGameBtn').addEventListener('click', () => {
     alert("📂 Load Game");
 });
 
-document.getElementById('settingsBtn').addEventListener('click', () => {
-    playButtonSound();
-    alert("⚙️ Settings");
-});
-
 document.getElementById('quitBtn').addEventListener('click', () => {
     playButtonSound();
     if (confirm("Weet je zeker dat je wilt afsluiten?")) {
@@ -59,18 +66,15 @@ document.getElementById('quitBtn').addEventListener('click', () => {
 });
 
 // ==================== SETTINGS ====================
-const settingsScreen = document.getElementById('settingsScreen');
 const settingsBtn = document.getElementById('settingsBtn');
 const backToMenuBtn = document.getElementById('backToMenuBtn');
 
-// Open Settings
 settingsBtn.addEventListener('click', () => {
     playButtonSound();
     menuScreen.classList.remove('active');
     settingsScreen.classList.add('active');
 });
 
-// Back to Menu
 backToMenuBtn.addEventListener('click', () => {
     playButtonSound();
     settingsScreen.classList.remove('active');
@@ -78,18 +82,17 @@ backToMenuBtn.addEventListener('click', () => {
 });
 
 // Volume sliders
-const musicSlider = document.getElementById('musicVolume');
-const sfxSlider = document.getElementById('sfxVolume');
-
-musicSlider.addEventListener('input', () => {
-    document.getElementById('musicValue').textContent = musicSlider.value + '%';
+document.getElementById('musicVolume').addEventListener('input', (e) => {
+    musicVolume = e.target.value / 100;
+    document.getElementById('musicValue').textContent = e.target.value + '%';
 });
 
-sfxSlider.addEventListener('input', () => {
-    document.getElementById('sfxValue').textContent = sfxSlider.value + '%';
+document.getElementById('sfxVolume').addEventListener('input', (e) => {
+    sfxVolume = e.target.value / 100;
+    document.getElementById('sfxValue').textContent = e.target.value + '%';
 });
 
-// Fullscreen
+// Fullscreen + Reset + Credits
 document.getElementById('fullscreenBtn').addEventListener('click', () => {
     playButtonSound();
     if (!document.fullscreenElement) {
@@ -99,15 +102,13 @@ document.getElementById('fullscreenBtn').addEventListener('click', () => {
     }
 });
 
-// Reset Progress
 document.getElementById('resetProgressBtn').addEventListener('click', () => {
     playButtonSound();
-    if (confirm("⚠️ ALLE progress wissen?\nDit kan NIET ongedaan gemaakt worden!")) {
-        alert("✅ Progress is volledig gereset.");
+    if (confirm("⚠️ ALLE progress wissen?")) {
+        alert("Progress is gereset.");
     }
 });
 
-// Credits
 document.getElementById('creditsBtn').addEventListener('click', () => {
     playButtonSound();
     alert("The Boys Game\n\nGemaakt met ❤️ door jou + Grok");
